@@ -19,9 +19,19 @@ class HTMLConverter(QWidget):
         super(HTMLConverter, self).__init__()
         ui_path = os.path.join(self.ROOT_DIR, 'html_converter.ui')
         loadUi(ui_path, self)
-        self.browse_btn.clicked.connect(self.browse)
+        self.browse_btn2.clicked.connect(self.browse)
+
+        self.convert_btn.clicked.connect(self.convert)
         self.file_path = None
 
+    def convert(self):
+        print(self.path_line_edit.text())
+        f = open(self.path_line_edit.text(), "r")
+        htmlText=  ""
+        htmlText = htmlText+ f"<h1>{f.readline()}</h1>\n"
+        for line in f:
+            htmlText = htmlText + f"<p>{line}</p>\n"
+        self.textEdit.setText(htmlText)
     def browse(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
