@@ -32,6 +32,7 @@ class HTMLConverter(QWidget):
         for line in f:
             htmlText = htmlText + f"<p>{line}</p>\n"
         self.textEdit.setText(htmlText)
+        f.close()
     def browse(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
